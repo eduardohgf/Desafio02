@@ -9,7 +9,7 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Desafio 01")
+    title: qsTr("Desafio 02")
     color:"gray"
 
     StackView {
