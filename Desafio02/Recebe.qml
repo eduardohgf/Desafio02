@@ -19,11 +19,13 @@ Rectangle {
         id:coluna
         anchors.centerIn: parent
         spacing: 5
+
         Rectangle{
             id:menu
             width: 350
             height: 250
             color:"darkgray"
+            radius: 5
             anchors.centerIn: parent
 
             ColumnLayout{
@@ -38,7 +40,9 @@ Rectangle {
                     width: boxtext.width
                     height: topico.height +3
                     TextInput{
+                        id: topicocontent
                         anchors.fill: parent
+                        text:"/"
                     }
                 }
                 Text{
@@ -54,7 +58,14 @@ Rectangle {
                         id:textArea
                         anchors.fill: parent
                         readOnly: true
-                        text:"Teste"
+                        text:"O Conteúdo será exibido aqui.
+Clique no botão uma vez antes de enviar a 1ª vez."
+                        Connections {
+                            target: comando
+                            onMessageReceived: textArea.text = message;
+                            // on + MessageReceived
+
+                        }
                     }
                 }
                 Button { //Botão ReceberComando
@@ -63,8 +74,9 @@ Rectangle {
                     anchors.bottom: parent.bottom
                     text: "Receber"
                     onClicked: {
-                        text:'teste'
+                        comando.conectar(topicocontent.text)
                     }
+
                 }
             }
         }
